@@ -7,13 +7,13 @@ spring:
   #设置文件上传大小
   servlet:
     multipart:
-      max-file-size: 10MB
+      max-file-size: 100MB
       max-request-size: 100MB
 
   datasource:
     username: root
     password: root1234
-    url: jdbc:mysql://localhost:3308/wifi_monitor?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3308/show_web?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     #数据源其他配置(要写DruidConfig)
@@ -45,8 +45,6 @@ spring:
 
   resources:
     static-locations=classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
-
-
 
 
   #pagehelper分页插件配置
