@@ -1,88 +1,97 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
 
-    <title>Signin Template for Bootstrap</title>
+<!--    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>-->
+<!--    <link rel="stylesheet" th:href="@{webjars/bootstrap/3.3.5/css/bootstrap.min.css}">-->
 
-    <!-- Bootstrap core CSS -->
-<!--    <link rel="stylesheet" href="webjars/bootstrap/4.0.0/css/bootstrap.min.css">-->
-<!--    <script  rel="stylesheet" src="webjars/bootstrap/4.0.0/css/bootstrap.min.css"></script>-->
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-
-    <!-- Custom styles for this template -->
     <style>
         body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #eee;
+            background: #f8f6e9;
         }
-
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
+        .mycenter{
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            width:500px;
+            padding: 5%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
+        .mycenter mysign{
+            width: 440px;
+        }
+        .mycenter input,checkbox,button{
+            margin-top:2%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        .mycheckbox{
+            margin-top:10px;
+            margin-left: 40px;
             margin-bottom: 10px;
+            height: 10px;
         }
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-        .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
     </style>
-
 </head>
-
 <body>
 
-<div class="container">
-
-    <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    <form action="/login" method="post">
+        <div class="mycenter">
+            <div class="mysign">
+                <div class="col-lg-11 text-center text-info">
+                    <h2>请登录</h2>
+                </div>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="accountName" placeholder="请输入账户名" required autofocus/>
+                </div>
+                <div class="col-lg-10"></div>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" name="password" placeholder="请输入密码" required autofocus/>
+                </div>
+                <div class="col-lg-10"></div>
+                <div class="col-lg-10 mycheckbox checkbox">
+                    <input type="checkbox" class="col-lg-1">记住密码</input>
+                </div>
+                <div class="col-lg-10"></div>
+                <div class="col-lg-10">
+                    <button id="btn" class="btn btn-lg btn-primary btn-block" >登陆</button>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
-</div> <!-- /container -->
+<script>
+    $("#btn").click(function () {
+        $.ajax({
+            url:"/login",
+            type:"POST",
+            async:false,
+            success:function (result) {
+                if(result.code == 200){
+                    window.location.href="/crud";
+                }
+            },
+            error: function (result)      //请求错误的回调函数
+            {
+                if(result.code == 1000){
+                    alert(result.data);
+                }
+            },
+        })
+    })
+
+</script>
+
 
 </body>
 </html>

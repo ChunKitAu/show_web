@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Msg {
 
     private final static int SUCCESS_CODE = 200 ;
-    private final static int FAILURE_CODE = 200 ;
+    private final static int FAILURE_CODE = 1000 ;
     private final static String SUCCESS_MESSAGE = "请求成功";
     private final static String FAILURE_MESSAGE = "请求成功";
 

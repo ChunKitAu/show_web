@@ -3,11 +3,14 @@ package com.chunkit.show_web.controller;
 import com.chunkit.show_web.entity.Article;
 import com.chunkit.show_web.service.ArticleService;
 import com.chunkit.show_web.util.Msg;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @auther ChunKitAu
@@ -21,8 +24,13 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/list")
-    public Msg findAll(){
-        return Msg.success(articleService.findAll());
+    public Msg findAll(@RequestParam(value = "pn", defaultValue = "1") Integer pn){
+        //引入PageHelper分页插件
+        //在查询前只需要,传入页码以及分页数
+        PageHelper.startPage(pn, 10);
+        List<Article> articles = articleService.findAll();
+        PageInfo pageInfo = new PageInfo(articles, 5);
+        return Msg.success().setData(pageInfo);
     }
 
     @GetMapping("/{id}")

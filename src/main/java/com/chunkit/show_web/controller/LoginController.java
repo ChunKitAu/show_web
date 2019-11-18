@@ -6,10 +6,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @auther ChunKitAu
@@ -19,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @PostMapping("/login")
-    public Msg login(@RequestParam("accountName")String accountName,@RequestParam("password")String password){
+    public String login(@RequestParam("accountName")String accountName,@RequestParam("password")String password){
 
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
@@ -30,23 +27,23 @@ public class LoginController {
             subject.login(usernamePasswordToken);
         }catch (AuthenticationException e){
             e.printStackTrace();
-            return Msg.failure("账号或密码错误");
+            return Msg.failure("账号或密码错误").toString();
         }catch (AuthorizationException e){
             e.printStackTrace();
-            return Msg.failure("没有权限");
+            return Msg.failure("没有权限").toString();
         }
 
-        return Msg.success();
+        return Msg.success().toString();
     }
 
     /**
      * 未登陆
      * @return
      */
-    @RequestMapping(value = "/login")
-    public Msg unauth() {
-        return Msg.failure().setCode(401).setMessage("未登录");
-    }
+//    @RequestMapping(value = "/login")
+//    public Msg unauth() {
+//        return Msg.failure().setCode(401).setMessage("未登录");
+//    }
 
     /**
      * 退出

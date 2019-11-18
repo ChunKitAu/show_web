@@ -61,7 +61,7 @@
 //        //登录
 //        shiroFilterFactoryBean.setLoginUrl("/login");
 //        //首页
-////        shiroFilterFactoryBean.setSuccessUrl("/index");
+//        shiroFilterFactoryBean.setSuccessUrl("/crud");
 //        //错误页面，认证不通过跳转
 //        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
 //        shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

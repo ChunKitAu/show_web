@@ -19,7 +19,7 @@ public class testController {
 
     @GetMapping("/index")
     public String index(){
-     return "test";
+     return "write";
     }
 
 

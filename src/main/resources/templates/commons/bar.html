@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--头-->
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="head" >
+    <div class="row" >
+        <div class="col-md-12">
+            <nav class="navbar navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand " href="#">后台管理系统</a>
+                    </div>
+                    <div id="navbar" class="navbar-right">
+                        <a class="navbar-brand" href="#">当前用户：xx</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</nav>
+
+<!--侧边-->
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
+    <div >
+        <ul class="nav nav-pills nav-stacked " >
+            <li role="presentation" >
+                <a href="#">发布文章</a>
+            </li>
+
+            <li role="presentation" >
+                <a href="#">文章管理</a>
+            </li>
+
+            <li role="presentation" >
+                <a href="#">图片管理</a>
+            </li>
+
+            <li role="presentation" >
+                <a href="#">退出</a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+
+<!-- 页脚 -->
+<div class="row" th:fragment="tail">
+    <div class="col-md-12">
+        <div align="center" style="padding-top: 200px">
+            Copyright © 2017-2018 larger5
+        </div>
+    </div>
+</div>
+
+
+
+<div class="pagination" th:fragment="paginationCode">
+    <!-- 分页文字信息 -->
+    <div class="col-md-6" id="page_info_area"></div>
+    <!-- 分页条信息 -->
+    <div class="col-md-6" id="page_nav_area"></div>
+</div>
+
+</body>
+</html>
