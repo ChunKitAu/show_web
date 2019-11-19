@@ -28,12 +28,12 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
     <div >
         <ul class="nav nav-pills nav-stacked " >
-            <li role="presentation" >
-                <a href="#">发布文章</a>
+            <li role="presentation" th:class="${activeUri == 'publish'?'active':''}" >
+                <a href="/index" >发布文章</a>
             </li>
 
-            <li role="presentation" >
-                <a href="#">文章管理</a>
+            <li role="presentation" th:class="${activeUri == 'crud'?'active':''}">
+                <a href="/crud" >文章管理</a>
             </li>
 
             <li role="presentation" >
