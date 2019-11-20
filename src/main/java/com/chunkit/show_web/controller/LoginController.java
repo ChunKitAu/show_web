@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @PostMapping("/login")
-    public String login(@RequestParam("accountName")String accountName,@RequestParam("password")String password){
+    public Msg login(@RequestParam("accountName")String accountName,@RequestParam("password")String password){
 
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
@@ -27,13 +27,13 @@ public class LoginController {
             subject.login(usernamePasswordToken);
         }catch (AuthenticationException e){
             e.printStackTrace();
-            return Msg.failure("账号或密码错误").toString();
+            return Msg.failure("账号或密码错误");
         }catch (AuthorizationException e){
             e.printStackTrace();
-            return Msg.failure("没有权限").toString();
+            return Msg.failure("没有权限");
         }
 
-        return Msg.success().toString();
+        return Msg.success();
     }
 
     /**

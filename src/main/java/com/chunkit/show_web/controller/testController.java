@@ -17,10 +17,7 @@ public class testController {
         return  "success";
     }
 
-    @GetMapping("/index")
-    public String index(){
-     return "write";
-    }
+
 
 
 }

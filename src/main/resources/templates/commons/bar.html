@@ -33,7 +33,7 @@
             </li>
 
             <li role="presentation" th:class="${activeUri == 'crud'?'active':''}">
-                <a href="/crud" >文章管理</a>
+                <a href="/article_list" >文章管理</a>
             </li>
 
             <li role="presentation" >
@@ -41,12 +41,11 @@
             </li>
 
             <li role="presentation" >
-                <a href="#">退出</a>
+                <a href="#" id="logout">退出</a>
             </li>
 
         </ul>
     </div>
-
 </nav>
 
 <!-- 页脚 -->
@@ -60,7 +59,7 @@
 
 
 
-<div class="pagination" th:fragment="paginationCode">
+<div class="row" th:fragment="paginationCode">
     <!-- 分页文字信息 -->
     <div class="col-md-6" id="page_info_area"></div>
     <!-- 分页条信息 -->
@@ -68,4 +67,5 @@
 </div>
 
 </body>
+
 </html>

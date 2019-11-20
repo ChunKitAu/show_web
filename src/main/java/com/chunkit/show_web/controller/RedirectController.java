@@ -15,9 +15,14 @@ public class RedirectController {
         return "login";
     }
 
-    @GetMapping("/crud")
+    @GetMapping("/article_list")
     public String crud(){
         return "article_list";
+    }
+
+    @GetMapping("/index")
+    public String index(){
+        return "write";
     }
 
 }
