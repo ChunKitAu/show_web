@@ -47,4 +47,11 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAll() {
         return articleMapper.selectAll();
     }
+
+    @Override
+    public List<Article> getArticleByType(String type) {
+        return articleMapper.getArticleByType(type);
+    }
+
+
 }

@@ -51,7 +51,20 @@ public class ArticleController {
 
     @PutMapping
     public Msg update(@Valid Article article){
+        article.setTime(new Date());
         return Msg.expect(articleService.update(article));
     }
+
+
+    @GetMapping("/listByType")
+    public Msg getArticleByType(@RequestParam("type") String type,@RequestParam(value = "pn", defaultValue = "1") Integer pn){
+        //引入PageHelper分页插件
+        //在查询前只需要,传入页码以及分页数
+        PageHelper.startPage(pn, 10);
+        List<Article> articles = articleService.getArticleByType(type);
+        PageInfo pageInfo = new PageInfo(articles, 5);
+        return Msg.success().setData(pageInfo);
+    }
+
 
 }

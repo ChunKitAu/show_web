@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主题</title>
+    <link rel="stylesheet" href="css/indexStyle.css">
+    <script type="text/javascript" src="webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="tlogo"><p style="font-size: 100px;">LOGO</p> </div><!--头部LOGO-->
+    <div class="nav">
+        <div class="nav1 center">
+            <ul>
+                <li><a href="/index" >首页</a></li>
+                <li><a href="/index_article?type=项目组介绍" >项目组介绍</a></li>
+                <li><a href="/list?type=项目案例/成果" >项目案例/成果</a></li>
+                <li><a href="/list?type=学术动态" >学术动态</a></li>
+                <li><a href="/index_article?type=实验室介绍" >实验室介绍</a></li>
+                <li><a href="/index_article?type=联系我们" >联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <a href="#top"><img src="img/1.png"/></a>
+    </div>
+</header>
+
+<!--正文-->
+<div class="ctn center">
+    <div class="left">
+        <div class="pos">
+            <b>当前位置：</b>
+            <a href="index.html" target="_parent">首页</a>
+            >
+            <a href="MORE.html" target="_parent">学术动态</a>
+        </div>
+        <div>
+            <img src="img/分割.png" />
+        </div>
+        <div class="link">
+            <a href="" target="_blank">
+                <div>> 项目组介绍</div>
+                <span>></span>
+            </a>
+            <a href="" target="_blank">
+                <div>> 项目案例/成果</div>
+                <span>></span>
+            </a>
+            <a href="" target="_blank">
+                <div>> 实验室介绍</div>
+                <span>></span>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="right">
+        <div class="article">
+            <table cellpadding="0" cellspacing="0" border="0" id = "table1">
+                <tr>
+                    <td align="center" class="t1" id="table_t1"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td align="center" id="table_t2"></td>
+                </tr>
+
+            </table>
+        </div>
+        <div id="contentDiv"></div>
+    </div>
+
+</div>
+<footer>页脚</footer>
+</body>
+
+<script>
+    $(function () {
+        //获取url参数
+        var parameterURL =decodeURI(location.search.substring(1, location.search.length));
+        var params = null;
+        // alert(parameterURL);
+        if(parameterURL != null && parameterURL.length > 0){
+            //获取id
+            params = parameterURL.substring(0,2);
+            if(params=="id"){
+                var id = parameterURL.substring(3,parameterURL.length);
+                initById(id);
+            }else{
+                var type = parameterURL.substring(5,parameterURL.length);
+                initByType(type);
+            }
+
+
+
+        }
+
+    })
+
+    function initById(id){
+        $.ajax({
+            url: "/article/" + id,
+            type: "GET",
+            success: function (result) {
+                console.log(result);
+                if (result.code == 200) {
+                    //数据回显
+                    $("#table_t1").append(result.data.title);
+
+                    $("#table_t2").append("时间:"+result.data.time+"  作者:"+ result.data.author+"  来源："+ result.data.reblog+"  阅读次数："+result.data.readtimes);
+
+                    $("#contentDiv").html(result.data.content);
+                }
+            }
+        })
+    }
+
+    function initByType(type){
+        $.ajax({
+            url: "/article/listByType",
+            type: "GET",
+            data:{type:type},
+            success: function (result) {
+                console.log(result);
+                if (result.code == 200) {
+                    //数据回显
+                    $("#table_t1").append(result.data.list[0].title);
+                    $("#table_t2").append("");
+                    // $("#table_t2").append("时间:"+result.data.list[0].time+"  作者:"+ result.data.list[0].author+"  来源："+ result.data.list[0].reblog+"  阅读次数："+result.data.list[0].readtimes);
+
+                    $("#contentDiv").html(result.data.list[0].content);
+                }
+            }
+        })
+    }
+
+
+</script>
+
+
+</html>

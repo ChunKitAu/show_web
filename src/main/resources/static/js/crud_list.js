@@ -45,7 +45,7 @@ function build_seeker_table(result) {
         //添加一个自定义属性,用来表示当前要修改的id
         editBtn.attr("edit_id", item.id);
         editBtn.click(function () {
-            window.location.href = "/index?id=" + item.id;
+            window.location.href = "/write?id=" + item.id;
         });
         var editTd = $("<td></td>").append(editBtn);
 
@@ -55,7 +55,7 @@ function build_seeker_table(result) {
         delBtn.attr("ban_id", item.id);
 
         var banTd = $("<td></td>").append(delBtn);
-        //添加一个自定义属性,用来表示要禁止的id
+        //添加一个自定义属性,用来表示要删除的id
         delBtn.attr("ban-id", item.id);
 
         delBtn.click(function () {

@@ -16,11 +16,21 @@ spring:
   freemarker:
     cache: false
 
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+
+
+  #数据库
   datasource:
     username: root
     password: root1234
     url: jdbc:mysql://localhost:3308/show_web?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 
     #数据源其他配置(要写DruidConfig)
     #配置初始化大小、最小、最大
@@ -65,6 +75,5 @@ mybatis:
     cache-enabled: true
     call-setters-on-nulls: true
     mapUnderscoreToCamelCase: true
-
 
 

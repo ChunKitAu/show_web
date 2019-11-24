@@ -17,12 +17,33 @@ public class RedirectController {
 
     @GetMapping("/article_list")
     public String crud(){
-        return "article_list";
+        return "crud_list";
     }
+
+    @GetMapping("/write")
+    public String write(){
+        return "crud_write";
+    }
+
 
     @GetMapping("/index")
     public String index(){
-        return "write";
+        return "index";
+    }
+
+    @GetMapping("/index_article")
+    public String index_article(){
+        return "index_article";
+    }
+
+    @GetMapping("/list")
+    public String list(){
+        return "index_list";
+    }
+
+    @GetMapping("/introduce")
+    public String show(){
+        return "index_introduce";
     }
 
 }

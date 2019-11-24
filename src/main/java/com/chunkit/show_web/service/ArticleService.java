@@ -49,4 +49,10 @@ public interface ArticleService {
      */
     List<Article> findAll();
 
+    /**
+     * 根据文章类型获取Article
+     * @return
+     */
+    List<Article> getArticleByType(String type);
+
 }
