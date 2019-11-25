@@ -14,7 +14,7 @@ function build_page_nav(result) {
     //page_nav_area
 
     $("#page_nav_area").empty();
-    var ul = $("<ul></ul>").addClass("pagination pagination-lg");
+    var ul = $("<ul></ul>").addClass("pagination");
 
     var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
     var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));

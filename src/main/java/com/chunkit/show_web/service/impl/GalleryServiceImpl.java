@@ -45,6 +45,6 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public List<Gallery> findAll() {
-        return galleryMapper.selectAll();
+        return galleryMapper.getAll();
     }
 }

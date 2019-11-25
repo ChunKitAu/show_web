@@ -1,67 +1,96 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="contentType" content="textml;charst=utf-8"/>
+		<meta charset="UTF-8"/>
 		<title>恒创开发团队</title>
 		<script type="text/javascript" src="webjars/jquery/3.3.1/jquery.min.js"></script>
+
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" type="text/css" href="css/s2.css" />
+		<link rel="stylesheet" type="text/css" href="css/s3.css">
+		<link rel="stylesheet" href="css/gallery.css">
+		<link rel="stylesheet" href="css/1.css">
 		<link rel="stylesheet" href="css/indexStyle.css">
 	</head>
 	<body>
-
-		<header >
-			<div class="tlogo"><p style="font-size: 100px;">LOGO</p> </div><!--头部LOGO-->
-			<div class="nav">
-				<div class="nav1 center">
-					<ul>
-						<li><a href="/index" >首页</a></li>
-						<li><a href="/index_article?type=项目组介绍" >项目组介绍</a></li>
-						<li><a href="/list?type=项目案例/成果" >项目案例/成果</a></li>
-						<li><a href="/list?type=学术动态" >学术动态</a></li>
-						<li><a href="/index_article?type=实验室介绍" >实验室介绍</a></li>
-						<li><a href="/index_article?type=联系我们" >联系我们</a></li>
+		<div class="container">
+			<div class="logo">
+				<div class="logo_img">
+					logo
+				</div>
+			</div>
+			<div class="menu">
+				<ul>
+					<li><a href="/index" >首页</a></li>
+					<li><a href="/index_article?type=项目组介绍" >项目组介绍</a></li>
+					<li><a href="/list?type=项目案例/成果" >项目案例/成果</a></li>
+					<li><a href="/list?type=学术动态" >学术动态</a></li>
+					<li><a href="/index_article?type=实验室介绍" >实验室介绍</a></li>
+					<li><a href="/index_article?type=联系我们" >联系我们</a></li>
+				</ul>
+			</div>
+			<div class="slider">
+				<div class="slider-img">
+					<ul class="slider-img-ul">
+						<li><img src="img/1.png"></li>
+						<li><img src="img/1.png"></li>
+						<li><img src="img/1.png"></li>
+						<li><img src="img/1.png"></li>
 					</ul>
 				</div>
 			</div>
-			<!-- 画廊-->
-			<div>
-				<a href="#top"><img src="img/1.png"/></a>
-			</div>
-		</header>
 
-		<!--正文-->
-		<div class="info">
-			<div class="info1 center">
-				<div class="left">
-					<div class="title_1">
-						<h3>学术动态</h3>
-						<span>
-							<a href="/list?type=学术动态" target="_blank">MORE</a>
+			<div class="activity">
+
+				<div class="info1">
+					<div class="left">
+						<div class="title_1">
+							<h3>学术动态</h3>
+							<span>
+							<a href="/list?type=学术动态">MORE</a>
 						</span>
+						</div>
+						<div id="new1" class="new1">
+							<!-- new1List -->
+						</div>
 					</div>
-					<div class="clear"></div>
-					<div id="new1" class="new1">
-						<!-- new1List -->
-					</div>
-				</div>
-				
-				<div class="right">
-					<div class="title_2">
-						<h3>项目案例/成果</h3>
-						<span>
+
+					<div class="right">
+						<div class="title_2">
+							<h3>项目案例/成果</h3>
+							<span>
 							<a href="/list?type=项目案例/成果">MORE</a>
 						</span>
-					</div>
-					<div class="clear"></div>
-					<div class="new2" id="new2">
-						<!-- new2List -->
+						</div>
+						<div class="new2" id="new2">
+							<!-- new2List -->
+						</div>
 					</div>
 				</div>
+
+
+
+
+
+
 			</div>
+
+			<div class="footer">
+				<div class="ff">
+					<!--<div class="fl">-->
+					<p>CopyRight 2012 by 郑州鑫地酒店管理有限公司 All Right Reserved 豫ICP备案号：07000368号 技术支持：郑州做网站</p>
+					<p>地址：郑州市大学中路 120 号 电话：0371-87565869 传真：0371-8756****</p>
+					<p>邮箱：xindihotel@sina.com</p>
+					<p>官方微博</p>
+					<!--</div>-->
+				</div>
+			</div>
+
 		</div>
-		
+
 
 	</body>
 
 <script type="text/javascript" src="js/index.js"></script>
-
+<script type="text/javascript" src="js/gallery.js"></script>
 </html>

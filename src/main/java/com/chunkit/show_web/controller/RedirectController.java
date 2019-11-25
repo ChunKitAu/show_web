@@ -20,6 +20,12 @@ public class RedirectController {
         return "crud_list";
     }
 
+    @GetMapping("/gallery")
+    public String gallery(){
+        return "crud_gallery";
+    }
+
+
     @GetMapping("/write")
     public String write(){
         return "crud_write";

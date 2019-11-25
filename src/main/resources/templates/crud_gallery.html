@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+
+<!--    <script src="https://cdn.bootcss.com/baguettebox.js/1.11.0/baguetteBox.min.js"></script>-->
+    <script type="text/javascript" src="js/baguetteBox.min.js"></script>
+
+    <script type="text/javascript" src="webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap-theme.css">
+
+
+    <link rel="stylesheet" type="text/css" href="css/gallery/htmleaf-demo.css">
+    <link rel="stylesheet" href="css/gallery/baguetteBox.min.css">
+
+<!--    <link href="https://cdn.bootcss.com/baguettebox.js/1.11.0/baguetteBox.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="css/gallery/gallery-clean.css">
+</head>
+
+<body>
+
+
+<div th:replace="commons/bar::head"></div>
+<div class="container-fluid">
+
+        <div class="row">
+            <!--引入侧边栏-->
+            <div th:replace="commons/bar::#sidebar(activeUri='crud')"></div>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+                <div class="htmleaf-container">
+
+                    <div class="container gallery-container">
+
+                        <h1>画廊图片选择</h1>
+                        <button class="btn btn-primary btn-lg">上传图片</button>
+                        <div class="tz-gallery">
+
+                            <div class="row" id="div0">
+
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="file://C:\Users\ChunKitAu\Desktop\123.jpg">
+                                            <img src="file://C:/Users/ChunKitAu/Desktop/123.jpg" alt="Park">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="/img/park.jpg">
+                                            <img src="img/park.jpg" alt="Bridge">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="img/1.png">
+                                            <img src="img/1.png" alt="Tuneel">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="img/1.png">
+                                            <img src="img/1.png" alt="Coast">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="img/1.png">
+                                            <img src="img/1.png" alt="Rails">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <a class="lightbox" href="img/1.png">
+                                            <img src="img/1.png" alt="Traffic">
+                                        </a>
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <button>asndasndl</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </main>
+
+        </div>
+    </div>
+
+</div>
+<div th:replace="commons/bar::tail"></div>
+
+</body>
+<script>
+    $(function () {
+        toPage(1);
+    });
+
+    function toPage(pn) {
+        var totalRecord, currentPage;
+        $.ajax({
+            url: "/Gallery/list?pn=" + pn,
+            type: "GET",
+            success: function (result) {
+                initGallery(result)
+            },
+            error: function () {
+                alert("error..");
+            }
+        })
+    };
+
+
+
+    // function initGallery(result) {
+    //     $("#div0").empty();
+    //
+    //     console.log(result);
+    //
+    //     var gallerys = result.data.list;
+    //
+    //     $.each(gallerys, function (index, item) {
+    //
+    //
+    //         var div1 = document.createElement('div');
+    //         div1.setAttribute("class","col-sm-6 col-md-4");
+    //
+    //         var div2 = document.createElement('div');
+    //         div2.setAttribute("class","thumbnail");
+    //
+    //         var aa = document.createElement('a');
+    //         aa.setAttribute("class","lightbox");
+    //         aa.href=item.img;
+    //
+    //         var img = document.createElement('img');
+    //         img.src = item.img;
+    //
+    //         aa.appendChild(img);
+    //
+    //         var div3 = document.createElement('div');
+    //         div3.setAttribute("class","caption");
+    //
+    //         var btn = document.createElement('button');
+    //         if(item.select == 0){
+    //             btn.setAttribute("class","btn btn-primary btn-sm");
+    //         }else{
+    //             btn.setAttribute("class","btn btn-danger btn-sm");
+    //         }
+    //
+    //         //添加点击事件
+    //         btn.addEventListener("click",function (ev) {
+    //             alert(item.slect==0?1:0);
+    //         });
+    //
+    //         div3.appendChild(btn);
+    //
+    //         div2.appendChild(aa);
+    //         div2.appendChild(div3);
+    //
+    //         div1.appendChild(div1);
+    //
+    //         $("#div0").appendChild(div1);
+    //     },'html');
+    // }
+
+
+    function initGallery(result) {
+        $("#div0").empty();
+
+        console.log(result);
+
+        var gallerys = result.data.list;
+
+        $.each(gallerys, function (index, item) {
+
+            var div1 = $("<div></div>").addClass("col-sm-6 col-md-4");
+
+            var div2 = $("<div></div>").addClass("thumbnail");
+
+            var aa = $("<a></a>").addClass("lightbox").attr("href",item.img);
+
+            var img = $("<img></img>").addClass('img').attr("src",item.img);
+
+
+            aa.append(img);
+
+            var div3 = $("<div></div>").addClass("caption");
+
+            var btn = $("<button></button>");
+            if(item.select == 0){
+                btn.addClass("btn btn-primary ");
+            }else{
+                btn.addClass("btn btn-danger ");
+            }
+
+            //添加点击事件
+            btn.click(function () {
+                alert(item.slect==0?1:0);
+            });
+
+            div3.append(btn);
+
+            div2.append(aa).append(div3);
+
+            div1.append(div2);
+
+            div1.appendTo("#div0");
+        });
+    }
+
+</script>
+
+
+<script type="text/javascript">
+    baguetteBox.run('.tz-gallery');
+</script>
+
+<script type="text/javascript" src="js/logout.js"></script>
+
+
+
+
+</html>

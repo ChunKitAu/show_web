@@ -3,11 +3,14 @@ package com.chunkit.show_web.controller;
 import com.chunkit.show_web.entity.Gallery;
 import com.chunkit.show_web.service.GalleryService;
 import com.chunkit.show_web.util.Msg;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @auther ChunKitAu
@@ -25,8 +28,13 @@ public class GalleryController {
      * @return
      */
     @GetMapping("/list")
-    public Msg findAll(){
-        return Msg.success(galleryService.findAll());
+    public Msg findAll(@RequestParam(value = "pn", defaultValue = "1") Integer pn){
+
+        List<Gallery> gallerys = galleryService.findAll();
+        //PageHelper
+        PageHelper.startPage(pn, 9);
+        PageInfo pageInfo = new PageInfo(gallerys, 5);
+        return Msg.success().setData(pageInfo);
     }
 
     @GetMapping("/{id}")
