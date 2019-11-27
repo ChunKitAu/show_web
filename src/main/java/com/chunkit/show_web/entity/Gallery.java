@@ -22,7 +22,8 @@ public class Gallery {
     /**
      * 是否选用
      */
-    private Integer select;
+    @Column(name = "isSelect")
+    private Integer isSelect;
 
 
 }

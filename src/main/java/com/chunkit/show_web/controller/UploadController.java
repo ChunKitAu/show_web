@@ -1,9 +1,12 @@
 package com.chunkit.show_web.controller;
 
+import com.chunkit.show_web.entity.Gallery;
+import com.chunkit.show_web.service.GalleryService;
 import com.chunkit.show_web.util.Msg;
 import com.chunkit.show_web.util.UploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +28,9 @@ import java.util.List;
 public class UploadController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    GalleryService galleryService;
 
     // 图片类型
     private static List<String> imageTypes = new ArrayList<String>();
@@ -54,7 +60,6 @@ public class UploadController {
     @ResponseBody
     public String vedioUpload(HttpServletRequest request) {
         String DirectoryName = "upload/vedios/";
-
         return UploadUtil.upload(request,vedioTypes,DirectoryName);
     }
 
@@ -70,13 +75,19 @@ public class UploadController {
             return Msg.failure().setMessage("文件格式错误");
         }
 
+        Gallery gallery = new Gallery();
+
         try {
-             UploadUtil.uploadFile(request, DirectoryName,file);
+            String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
+            String s = UploadUtil.uploadFile(request, DirectoryName,file);
+
+            System.out.println(s);
+             gallery.setImg(s );
+             return Msg.expect(galleryService.add(gallery));
         } catch (IOException e) {
             e.printStackTrace();
             return Msg.failure().setMessage("上传失败");
         }
-        return Msg.success().setMessage("上传成功");
     }
 
 }

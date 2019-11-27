@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>主题</title>
-    <link rel="stylesheet" href="css/indexStyle.css">
+
     <script type="text/javascript" src="webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/indexStyle.css">
+
 </head>
 <body>
 <header>
@@ -21,9 +26,34 @@
             </ul>
         </div>
     </div>
-    <div>
-        <a href="#top"><img src="img/1.png"/></a>
-    </div>
+
+
+        <!-- 画廊-->
+        <div class="slider">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <!-- 轮播图片 -->
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+
 </header>
 
 <!--正文-->
@@ -31,23 +61,23 @@
     <div class="left">
         <div class="pos">
             <b>当前位置：</b>
-            <a href="index.html" target="_parent">首页</a>
+            <a href="/index">首页</a>
             >
-            <a href="MORE.html" target="_parent">学术动态</a>
+            <a id = "localA"></a>
         </div>
         <div>
             <img src="img/分割.png" />
         </div>
         <div class="link">
-            <a href="" target="_blank">
+            <a href="/index_article?type=项目组介绍" >
                 <div>> 项目组介绍</div>
                 <span>></span>
             </a>
-            <a href="" target="_blank">
+            <a href="/list?type=项目案例/成果" >
                 <div>> 项目案例/成果</div>
                 <span>></span>
             </a>
-            <a href="" target="_blank">
+            <a href="/index_article?type=实验室介绍" >
                 <div>> 实验室介绍</div>
                 <span>></span>
             </a>
@@ -72,71 +102,19 @@
     </div>
 
 </div>
-<footer>页脚</footer>
+<div class="footer center">
+    <div class="ff">
+        <div class="fl">
+            <p>CopyRight 2012 by 郑州鑫地酒店管理有限公司 All Right Reserved 豫ICP备案号：07000368号 技术支持：郑州做网站</p>
+            <p>地址：郑州市大学中路 120 号 电话：0371-87565869 传真：0371-8756****</p>
+            <p>邮箱：xindihotel@sina.com</p>
+            <p>官方微博</p>
+        </div>
+    </div>
+</div>
 </body>
 
-<script>
-    $(function () {
-        //获取url参数
-        var parameterURL =decodeURI(location.search.substring(1, location.search.length));
-        var params = null;
-        // alert(parameterURL);
-        if(parameterURL != null && parameterURL.length > 0){
-            //获取id
-            params = parameterURL.substring(0,2);
-            if(params=="id"){
-                var id = parameterURL.substring(3,parameterURL.length);
-                initById(id);
-            }else{
-                var type = parameterURL.substring(5,parameterURL.length);
-                initByType(type);
-            }
-
-
-
-        }
-
-    })
-
-    function initById(id){
-        $.ajax({
-            url: "/article/" + id,
-            type: "GET",
-            success: function (result) {
-                console.log(result);
-                if (result.code == 200) {
-                    //数据回显
-                    $("#table_t1").append(result.data.title);
-
-                    $("#table_t2").append("时间:"+result.data.time+"  作者:"+ result.data.author+"  来源："+ result.data.reblog+"  阅读次数："+result.data.readtimes);
-
-                    $("#contentDiv").html(result.data.content);
-                }
-            }
-        })
-    }
-
-    function initByType(type){
-        $.ajax({
-            url: "/article/listByType",
-            type: "GET",
-            data:{type:type},
-            success: function (result) {
-                console.log(result);
-                if (result.code == 200) {
-                    //数据回显
-                    $("#table_t1").append(result.data.list[0].title);
-                    $("#table_t2").append("");
-                    // $("#table_t2").append("时间:"+result.data.list[0].time+"  作者:"+ result.data.list[0].author+"  来源："+ result.data.list[0].reblog+"  阅读次数："+result.data.list[0].readtimes);
-
-                    $("#contentDiv").html(result.data.list[0].content);
-                }
-            }
-        })
-    }
-
-
-</script>
-
+<script type="text/javascript" src="js/index_article.js"></script>
+<script type="text/javascript" src="js/index_gallery.js"></script>
 
 </html>

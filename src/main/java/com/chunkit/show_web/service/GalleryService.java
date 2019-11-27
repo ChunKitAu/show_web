@@ -47,4 +47,18 @@ public interface GalleryService {
     List<Gallery> findAll();
 
 
+    /**
+     * 根据id修改select
+     * @param id
+     * @param selcet
+     * @return
+     */
+    boolean updateById(int id,int selcet);
+
+
+    /**
+     * 根据是否选择选取图片
+     * @return
+     */
+    List<Gallery> getBySelect();
 }

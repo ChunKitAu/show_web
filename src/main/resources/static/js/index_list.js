@@ -13,6 +13,8 @@ function toPage(pn) {
     if(parameterURL != null && parameterURL.length > 0){
         //获取文章类型
         var type = parameterURL.substring(5,parameterURL.length);
+        $("#localA").append(type).attr("href","/list?type="+type);
+
         getList(type);
     }
 

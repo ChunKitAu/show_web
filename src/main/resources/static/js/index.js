@@ -1,6 +1,8 @@
 $(function () {
-    getDemoList()//加载项目案例/成果 列表
-    getLearningList()//加载学术动态列表
+    getDemoList();//加载项目案例/成果 列表
+    getLearningList();//加载学术动态列表
+
+
 })
 
 function getDemoList() {
@@ -66,3 +68,6 @@ function getLearningList() {
         }
     })
 }
+
+
+

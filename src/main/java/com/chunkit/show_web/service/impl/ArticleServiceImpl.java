@@ -53,5 +53,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.getArticleByType(type);
     }
 
+    @Override
+    public int getIdByType(String type) {
+        return articleMapper.getIdByTpe(type);
+    }
+
 
 }

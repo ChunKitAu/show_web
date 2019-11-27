@@ -20,7 +20,7 @@ public class UploadUtil {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * 上传文件
+     * 上传文件 并用于ckeditor 的回显
      * @param request
      * @param FileType
      * @param DirectoryName

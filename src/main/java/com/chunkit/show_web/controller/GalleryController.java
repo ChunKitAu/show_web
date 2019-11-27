@@ -30,9 +30,9 @@ public class GalleryController {
     @GetMapping("/list")
     public Msg findAll(@RequestParam(value = "pn", defaultValue = "1") Integer pn){
 
+        PageHelper.startPage(pn, 9);
         List<Gallery> gallerys = galleryService.findAll();
         //PageHelper
-        PageHelper.startPage(pn, 9);
         PageInfo pageInfo = new PageInfo(gallerys, 5);
         return Msg.success().setData(pageInfo);
     }
@@ -58,4 +58,13 @@ public class GalleryController {
     }
 
 
+    @PutMapping("/updateById")
+    public Msg updateByid(@RequestParam("select")int select,@RequestParam("id")int id){
+        return Msg.expect(galleryService.updateById(id,select));
+    }
+
+    @GetMapping("/isSelect")
+    public Msg getByisSelect(){
+        return Msg.success(galleryService.getBySelect());
+    }
 }

@@ -67,4 +67,10 @@ public class ArticleController {
     }
 
 
+    @GetMapping("/getIdByType")
+    public Msg getIdByType(@RequestParam("type") String type){
+        return Msg.success(articleService.getIdByType(type));
+    }
+
+
 }

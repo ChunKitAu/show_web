@@ -47,9 +47,5 @@ public class RedirectController {
         return "index_list";
     }
 
-    @GetMapping("/introduce")
-    public String show(){
-        return "index_introduce";
-    }
 
 }

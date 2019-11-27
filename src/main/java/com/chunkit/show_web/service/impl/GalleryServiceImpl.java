@@ -47,4 +47,14 @@ public class GalleryServiceImpl implements GalleryService {
     public List<Gallery> findAll() {
         return galleryMapper.getAll();
     }
+
+    @Override
+    public boolean updateById(int id, int select) {
+        return galleryMapper.updateById(id,select);
+    }
+
+    @Override
+    public List<Gallery> getBySelect() {
+        return galleryMapper.getBySelect();
+    }
 }

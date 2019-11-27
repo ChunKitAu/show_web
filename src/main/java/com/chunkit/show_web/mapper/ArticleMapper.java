@@ -13,4 +13,8 @@ public interface ArticleMapper extends Mapper<Article> {
     @Select("SELECT * FROM article WHERE TYPE = #{type}  ORDER BY TIME DESC")
     List<Article> getArticleByType(String type);
 
+
+    @Select("SELECT id FROM article WHERE TYPE = #{type}")
+    int getIdByTpe(String type);
+
 }

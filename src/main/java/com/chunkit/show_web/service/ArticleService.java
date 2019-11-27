@@ -55,4 +55,10 @@ public interface ArticleService {
      */
     List<Article> getArticleByType(String type);
 
+    /**
+     * 根据type获取id
+     * @param type
+     * @return
+     */
+    int getIdByType(String type);
 }

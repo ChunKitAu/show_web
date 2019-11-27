@@ -7,7 +7,7 @@ function login(){
         data:$("#loginForm").serialize(),
         success:function (result) {
             if(result.code == 200){
-                window.location.href="/index";
+                window.location.href="/article_list";
             }
             if(result.code == 1000){
                 alert(result.data);

@@ -1,19 +1,4 @@
 
-
-[class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
 body, html { font-size: 100%; 	padding: 0; margin: 0;}
 
 /* Reset */
@@ -41,8 +26,6 @@ body{
 	color: #D5D6E2;
 
 }
-a{ color: rgba(255, 255, 255, 0.6);outline: none;text-decoration: none;-webkit-transition: 0.2s;transition: 0.2s;}
-a:hover,a:focus{color:#74777b;text-decoration: none;}
 .htmleaf-container{
 	margin: 0 auto;
 }
