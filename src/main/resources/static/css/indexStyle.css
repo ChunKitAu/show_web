@@ -4,6 +4,7 @@
     text-decoration: none;
     list-style-type: none;
     font-family: 黑体;
+
 }
 
 /*内外边距为0，去下划线、列表标点，字体*/
@@ -11,9 +12,6 @@
     margin: 0 auto;
 }
 
-.fl {
-    float: left;
-}
 
 .fr {
     float: right;
@@ -40,7 +38,7 @@ header .tlogo {
 header .nav {
     width: 100%;
     height: 40px;
-    background: #0B610B;
+    background: #337ab7;
     overflow: hidden;
 }
 
@@ -78,6 +76,7 @@ header div a img {
     width: 100%;
     height: 400px;
     margin-top: 40px;
+    background: #F1FAFA;
 }
 
 .info1 {
@@ -194,25 +193,25 @@ header div a img {
 .footer{
     width: 100%;
     height: 150px;
-    margin-top: 120px;
+    /*margin-top: 120px;*/
     color: white;
-    background-color: #026425;
+    background-color: #337ab7;
     overflow-y: hidden;
 }
 
 .ff{
     width: 1200px;
     height: 150px;
-    float: left;
+    /*float: left;*/
     margin: 20px auto 0px auto;
     overflow-y: hidden;
 }
 .fl{
      /*width: 1050px;*/
      height: 150px;
-     margin-top: 25px;
+     /*margin-top: 25px;*/
      margin-left: 120px;
-     float: left;
+     /*float: left;*/
      overflow-y: hidden;
  }
 .ff p{
@@ -340,7 +339,20 @@ header div a img {
     overflow: hidden;
     width: 100vw;
     position: relative;
-    overflow: hidden;
 }
 
+div.item  img{
+    width: 100%;
+    height:auto;
+}
+div#myCarousel{
+    margin: 0 auto;
+}
+
+a#left carousel-control{
+    position: absolute;
+}
+a#right carousel-control{
+    position: absolute;
+}
 

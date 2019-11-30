@@ -11,7 +11,6 @@ function getDemoList() {
         type: "GET",
         data:{type:"项目案例/成果"},
         success: function (result) {
-            console.log(result);
             if (result.code == 200) {
                 //数据回显
                 var contents = result.data.list;
@@ -25,7 +24,7 @@ function getDemoList() {
                     a.innerText = item.title;
                     a.href="/index_article?id="+item.id;
                     var span = document.createElement('span');
-                    span.innerText = item.time;
+                    span.innerText = item.time.substring(1,10);
 
                     li.appendChild(a);
                     li.appendChild(span);
@@ -43,7 +42,6 @@ function getLearningList() {
         type: "GET",
         data:{type:"学术动态"},
         success: function (result) {
-            console.log(result);
             $("#learning").empty();
             if (result.code == 200) {
                 //数据回显
@@ -58,7 +56,7 @@ function getLearningList() {
                     a.innerText = item.title;
                     a.href="/index_article?id="+item.id;
                     var span = document.createElement('span');
-                    span.innerText = item.time;
+                    span.innerText = item.time.substring(1,10);
 
                     li.appendChild(a);
                     li.appendChild(span);

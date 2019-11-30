@@ -2,13 +2,24 @@ $(function () {
     //获取url参数
     var parameterURL =decodeURI(location.search.substring(1, location.search.length));
     var params = null;
-    // alert(parameterURL);
+
     if(parameterURL != null && parameterURL.length > 0){
         //获取id
         params = parameterURL.substring(0,2);
+
         if(params=="id"){
-            var id = parameterURL.substring(3,parameterURL.length);
+            var id = parameterURL.substring(3,parameterURL.indexOf("&"));
+
+            //显示位置：
+
+            var t = parameterURL.substring(parameterURL.indexOf("&")+6,parameterURL.length);
+            $("#localA").append(t).attr("href","/list?type="+t);
+
             initById(id);
+
+
+
+
         }else{
             var type = parameterURL.substring(5,parameterURL.length);
             $("#localA").append(type).attr("href","/list?type="+type);
@@ -26,7 +37,6 @@ function initById(id){
         url: "/article/" + id,
         type: "GET",
         success: function (result) {
-            console.log(result);
             if (result.code == 200) {
                 //数据回显
                 $("#table_t1").append(result.data.title);
@@ -45,7 +55,6 @@ function initByType(type){
         type: "GET",
         data:{type:type},
         success: function (result) {
-            console.log(result);
             if (result.code == 200) {
                 //数据回显
                 $("#table_t1").append(result.data.list[0].title);

@@ -20,7 +20,6 @@ function toPage(pn) {
 function initGallery(result) {
     $("#div0").empty();
 
-    console.log(result);
 
     var gallerys = result.data.list;
 

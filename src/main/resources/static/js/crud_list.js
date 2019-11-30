@@ -26,7 +26,6 @@ function toPage(pn) {
 function build_seeker_table(result) {
     $("#tbl_article tbody").empty();
 
-    console.log(result);
 
     var articles = result.data.list;
 

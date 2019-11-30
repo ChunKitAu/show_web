@@ -24,7 +24,6 @@ function getValue(id){
         url: "/article/" + id,
         type: "GET",
         success: function (result) {
-            console.log(result);
             if (result.code == 200) {
                 //数据回显
                 $('#title').val(result.data.title);

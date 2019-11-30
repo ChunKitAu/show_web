@@ -27,7 +27,7 @@ function getList(type) {
         type: "GET",
         data:{type:type},
         success: function (result) {
-            console.log(result);
+
             $("#newDiv").empty();
             if (result.code == 200) {
 
@@ -35,7 +35,7 @@ function getList(type) {
                 //数据回显
                 $.each(contents,function (index,item) {
                     var a = document.createElement('a');
-                    a.href="/index_article?id="+item.id;
+                    a.href="/index_article?id="+item.id+"&type="+type;
 
                     var div = document.createElement('div');
                     div.append(item.title);
