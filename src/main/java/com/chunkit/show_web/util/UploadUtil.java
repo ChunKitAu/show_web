@@ -3,12 +3,14 @@ package com.chunkit.show_web.util;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -17,7 +19,7 @@ import java.util.*;
  */
 public class UploadUtil {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(UploadUtil.class);
 
     /**
      * 上传文件 并用于ckeditor 的回显
@@ -69,7 +71,7 @@ public class UploadUtil {
             //实现图片回显
             map.put("uploaded",1);
             map.put("fileName",fileName);
-            map.put("url",DirectoryName+fileName);
+            map.put("url","http://10.0.57.28"+DirectoryName+fileName);
             return JSONUtils.toJSONString(map);
 
         } catch (IllegalStateException e) {
@@ -92,24 +94,19 @@ public class UploadUtil {
      * @return
      */
     public static String uploadFile(HttpServletRequest request, String DirectoryName,MultipartFile file) throws IOException {
-        // 获得上传路径的绝对路径地址(/upload)-->
-        String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
 
+        //获取文件后缀
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).toLowerCase();
-        // 如果路径不存在，则创建该路径
-        File realPathDirectory = new File(realPath);
-        if (realPathDirectory == null || !realPathDirectory.exists()) {
-            realPathDirectory.mkdirs();
-        }
-        file.getOriginalFilename();
+
         // 重命名上传后的文件名 111112323.jpg
         String fileName = System.currentTimeMillis()+suffix;
 
-        // 定义上传路径 .../upload/111112323.jpg
-        File uploadFile = new File(realPathDirectory + "\\" + fileName);
-        System.out.println(uploadFile);
+        InputStream inputStream = file.getInputStream();
 
-        file.transferTo(uploadFile);
+        // 通过ftp 上传到服务器中
+        if(!FTPUtil.uploadFile("10.0.57.28",21,"ftpRoot","root1234","/home/ftpRoot/upload/",DirectoryName,fileName,inputStream)){
+            return null;
+        }
         return  fileName;
     }
 

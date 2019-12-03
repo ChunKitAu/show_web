@@ -50,7 +50,7 @@ public class UploadController {
     @RequestMapping("uploadImage")
     @ResponseBody
     public String imageUpload(HttpServletRequest request) {
-        String DirectoryName = "upload/images/";
+        String DirectoryName = "/images/";
 
         return UploadUtil.upload(request,imageTypes,DirectoryName);
     }
@@ -59,7 +59,7 @@ public class UploadController {
     @RequestMapping("uploadVdeio")
     @ResponseBody
     public String vedioUpload(HttpServletRequest request) {
-        String DirectoryName = "upload/vedios/";
+        String DirectoryName = "/vedios/";
         return UploadUtil.upload(request,vedioTypes,DirectoryName);
     }
 
@@ -67,7 +67,7 @@ public class UploadController {
     @RequestMapping(value = "uploadGallery",method = RequestMethod.POST)
     @ResponseBody
     public Msg galleryImageUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
-        String DirectoryName = "upload/gallery/";
+        String DirectoryName = "/gallery/";
         //获取后缀
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).toLowerCase();
 
@@ -78,10 +78,13 @@ public class UploadController {
         Gallery gallery = new Gallery();
 
         try {
-            String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
             String s = UploadUtil.uploadFile(request, DirectoryName,file);
 
-             gallery.setImg(s );
+            if(s == null){
+                return Msg.failure().setMessage("上传失败");
+            }
+             gallery.setImg("http://10.0.57.28/gallery/"+s);
+             gallery.setIsSelect(0);
              return Msg.expect(galleryService.add(gallery));
         } catch (IOException e) {
             e.printStackTrace();
