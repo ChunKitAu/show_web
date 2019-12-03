@@ -44,6 +44,7 @@ public class GalleryController {
 
     @PostMapping
     public Msg add(Gallery gallery){
+        gallery.setIsSelect(0);
         return  Msg.expect(galleryService.add(gallery));
     }
 

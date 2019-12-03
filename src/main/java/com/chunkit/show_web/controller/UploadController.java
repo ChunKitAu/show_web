@@ -81,7 +81,6 @@ public class UploadController {
             String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
             String s = UploadUtil.uploadFile(request, DirectoryName,file);
 
-            System.out.println(s);
              gallery.setImg(s );
              return Msg.expect(galleryService.add(gallery));
         } catch (IOException e) {

@@ -1,5 +1,4 @@
 package com.chunkit.show_web.config;
-
 import com.chunkit.show_web.shiro.CustomRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -13,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @auther ChunKit
+ * @date 2019/10/27-16:01
+ */
 @Configuration
 public class ShiroConfig {
     /**
@@ -57,18 +60,15 @@ public class ShiroConfig {
 
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");
-        //登录成功跳转
-        shiroFilterFactoryBean.setSuccessUrl("/article_list");
-        //错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
 
-        //authc  对连接进行认证
-        map.put("/article_list","authc");
-        map.put("/gallery","authc");
-        map.put("/write","authc");
-
+//        map.put("/article/listByType","anon");
+//        map.put("/article/id","anon");
+//        map.put("/article/getIdByType","anon");
+//        map.put("/Gallery/isSelect","anon");
+//
+//        map.put("/**", "authc");
         map.put("/**", "anon");
-
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

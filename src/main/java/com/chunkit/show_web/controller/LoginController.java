@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class LoginController {
     @PostMapping("/login")
     public Msg login(@RequestParam("accountName")String accountName,@RequestParam("password")String password){
 
+        String sessionId = null;
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
 
@@ -25,6 +27,7 @@ public class LoginController {
 
         try{
             subject.login(usernamePasswordToken);
+             sessionId = (String) subject.getSession().getId();
         }catch (AuthenticationException e){
             e.printStackTrace();
             return Msg.failure("账号或密码错误");
@@ -33,17 +36,17 @@ public class LoginController {
             return Msg.failure("没有权限");
         }
 
-        return Msg.success();
+        return Msg.success().setData(sessionId);
     }
 
     /**
      * 未登陆
      * @return
      */
-//    @RequestMapping(value = "/login")
-//    public Msg unauth() {
-//        return Msg.failure().setCode(401).setMessage("未登录");
-//    }
+    @RequestMapping(value = "/login")
+    public Msg unauth() {
+        return Msg.failure().setCode(401).setMessage("未登录");
+    }
 
     /**
      * 退出
