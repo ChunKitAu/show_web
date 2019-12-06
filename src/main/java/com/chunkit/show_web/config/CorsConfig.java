@@ -6,8 +6,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
-
 /**
  * @auther ChunKitAu
  * @create 2019-12-01 01
@@ -19,6 +17,7 @@ public class CorsConfig {
         corsConfiguration.addAllowedOrigin("*"); // 1
         corsConfiguration.addAllowedHeader("*"); // 2
         corsConfiguration.addAllowedMethod("*"); // 3
+        corsConfiguration.setAllowCredentials(true);//允许带cookie
         return corsConfiguration;
     }
 

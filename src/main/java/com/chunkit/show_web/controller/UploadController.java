@@ -83,7 +83,7 @@ public class UploadController {
             if(s == null){
                 return Msg.failure().setMessage("上传失败");
             }
-             gallery.setImg("http://10.0.57.28/gallery/"+s);
+             gallery.setImg("http://10.0.57.28/upload/gallery/"+s);
              gallery.setIsSelect(0);
              return Msg.expect(galleryService.add(gallery));
         } catch (IOException e) {

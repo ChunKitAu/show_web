@@ -36,7 +36,7 @@ public class LoginController {
             return Msg.failure("没有权限");
         }
 
-        return Msg.success().setData(sessionId);
+        return Msg.success();
     }
 
     /**

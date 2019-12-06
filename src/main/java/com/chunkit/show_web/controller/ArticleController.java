@@ -33,8 +33,8 @@ public class ArticleController {
         return Msg.success().setData(pageInfo);
     }
 
-    @GetMapping("/{id}")
-    public Msg findById(@PathVariable("id")Integer id){
+    @GetMapping("/getById")
+    public Msg findById(@RequestParam("id")Integer id){
         return Msg.success(articleService.findById(id));
     }
 

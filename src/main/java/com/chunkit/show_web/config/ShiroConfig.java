@@ -61,13 +61,15 @@ public class ShiroConfig {
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");
 
-//        map.put("/article/listByType","anon");
-//        map.put("/article/id","anon");
-//        map.put("/article/getIdByType","anon");
-//        map.put("/Gallery/isSelect","anon");
-//
-//        map.put("/**", "authc");
-        map.put("/**", "anon");
+        map.put("/article/listByType","anon");
+        map.put("/article/getById","anon");
+        map.put("/article/getIdByType","anon");
+        map.put("/Gallery/isSelect","anon");
+        map.put("/uploadImage","anon");
+        map.put("/uploadVdeio","anon");
+
+        map.put("/**", "authc");
+//        map.put("/**", "anon");
         shiroFilterFactoryBean.setUnauthorizedUrl("/error");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;

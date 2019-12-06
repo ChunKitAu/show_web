@@ -71,7 +71,7 @@ public class UploadUtil {
             //实现图片回显
             map.put("uploaded",1);
             map.put("fileName",fileName);
-            map.put("url","http://10.0.57.28"+DirectoryName+fileName);
+            map.put("url","http://10.0.57.28/upload"+DirectoryName+fileName);
             return JSONUtils.toJSONString(map);
 
         } catch (IllegalStateException e) {
@@ -104,7 +104,7 @@ public class UploadUtil {
         InputStream inputStream = file.getInputStream();
 
         // 通过ftp 上传到服务器中
-        if(!FTPUtil.uploadFile("10.0.57.28",21,"ftpRoot","root1234","/home/ftpRoot/upload/",DirectoryName,fileName,inputStream)){
+        if(!FTPUtil.uploadFile("10.0.57.28",21,"ftpRoot","root1234","/home/ftpRoot/showWeb/upload/",DirectoryName,fileName,inputStream)){
             return null;
         }
         return  fileName;
