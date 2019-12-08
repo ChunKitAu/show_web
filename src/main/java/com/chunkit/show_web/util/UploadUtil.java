@@ -50,7 +50,8 @@ public class UploadUtil {
                     String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
 
                     if(FileType.contains(suffix)){
-                        fileName = UploadUtil.uploadFile(request, DirectoryName, file);
+                        InputStream inputStream = file.getInputStream();
+                        fileName = UploadUtil.uploadFile(DirectoryName,inputStream,suffix);
                     }else{
                         //文件格式错误
                         map.put("uploaded",0);
@@ -86,23 +87,15 @@ public class UploadUtil {
         return JSONUtils.toJSONString(map);
     }
 
-
     /**
      * 文件保存
-     * @param request
      * @param DirectoryName
      * @return
      */
-    public static String uploadFile(HttpServletRequest request, String DirectoryName,MultipartFile file) throws IOException {
-
-        //获取文件后缀
-        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).toLowerCase();
+    public static String uploadFile(String DirectoryName,InputStream inputStream,String suffix) throws IOException {
 
         // 重命名上传后的文件名 111112323.jpg
         String fileName = System.currentTimeMillis()+suffix;
-
-        InputStream inputStream = file.getInputStream();
-
         // 通过ftp 上传到服务器中
         if(!FTPUtil.uploadFile("10.0.57.28",21,"ftpRoot","root1234","/home/ftpRoot/showWeb/upload/",DirectoryName,fileName,inputStream)){
             return null;

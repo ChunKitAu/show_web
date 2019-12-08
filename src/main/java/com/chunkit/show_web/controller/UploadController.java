@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @auther ChunKitAu
@@ -47,6 +48,11 @@ public class UploadController {
         vedioTypes.add(".mp4");
     }
 
+    /**
+     * ckeditor上传图片
+     * @param request
+     * @return
+     */
     @RequestMapping("uploadImage")
     @ResponseBody
     public String imageUpload(HttpServletRequest request) {
@@ -55,7 +61,12 @@ public class UploadController {
         return UploadUtil.upload(request,imageTypes,DirectoryName);
     }
 
-    //上传视频
+
+    /**
+     * ckeditor 上传视频
+     * @param request
+     * @return
+     */
     @RequestMapping("uploadVdeio")
     @ResponseBody
     public String vedioUpload(HttpServletRequest request) {
@@ -63,7 +74,12 @@ public class UploadController {
         return UploadUtil.upload(request,vedioTypes,DirectoryName);
     }
 
-
+    /**
+     * 上传画廊的图片
+     * @param request
+     * @param file 前端上传的图片
+     * @return
+     */
     @RequestMapping(value = "uploadGallery",method = RequestMethod.POST)
     @ResponseBody
     public Msg galleryImageUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
@@ -78,7 +94,8 @@ public class UploadController {
         Gallery gallery = new Gallery();
 
         try {
-            String s = UploadUtil.uploadFile(request, DirectoryName,file);
+            InputStream inputStream = file.getInputStream();
+            String s = UploadUtil.uploadFile(DirectoryName,inputStream,suffix);
 
             if(s == null){
                 return Msg.failure().setMessage("上传失败");
@@ -91,5 +108,55 @@ public class UploadController {
             return Msg.failure().setMessage("上传失败");
         }
     }
+
+    /**
+     * ckeditor 复制图片上传 的一个方案    先将图片转为base64格式 然后在书写过程上传
+     * 目前 没使用
+     * @param request
+     * @param response
+     * @return
+     */
+//    @RequestMapping(value = "uploadImageByPase",method = RequestMethod.POST)
+    public Msg uploadImageByPase(HttpServletRequest request,HttpServletResponse response){
+        //图片保存路径
+        String DirectoryName = "/images/";
+        String fileName = null;
+        Map<String,Object> map = new HashMap<>();
+
+        try {
+            String src=request.getParameter("src");
+            if(src==null || src.trim().length()==0){
+                Msg.failure();
+            }else{
+                String[] srcArr = src.split(";base64,");//data:image/png;base64,iVBORw0KGgoAA
+                //文件后缀
+                String fileSuffixes = srcArr[0].split("/")[1];//data:image/png
+
+                BASE64Decoder decoder = new BASE64Decoder();
+
+                byte[] b = decoder.decodeBuffer(srcArr[1]);
+                for(int i=0;i<b.length;++i){
+                    if(b[i]<0){//调整异常数据
+                        b[i]+=256;
+                    }
+                }
+                //将base64 转为输入流
+                InputStream inputStream = new ByteArrayInputStream(b);
+                fileName = UploadUtil.uploadFile(DirectoryName, inputStream, fileSuffixes);
+
+                if(fileName == null){
+                     return Msg.failure();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Msg.failure();
+        }
+
+        map.put("url","http://10.0.57.28/upload"+DirectoryName+fileName);
+        return Msg.success().setData(map);
+    }
+
+
 
 }
