@@ -100,7 +100,7 @@ public class UploadController {
             if(s == null){
                 return Msg.failure().setMessage("上传失败");
             }
-             gallery.setImg("http://10.0.57.28/upload/gallery/"+s);
+             gallery.setImg("http://120.25.237.83:8091/upload/gallery/"+s);
              gallery.setIsSelect(0);
              return Msg.expect(galleryService.add(gallery));
         } catch (IOException e) {
@@ -153,7 +153,7 @@ public class UploadController {
             return Msg.failure();
         }
 
-        map.put("url","http://10.0.57.28/upload"+DirectoryName+fileName);
+        map.put("url","http://120.25.237.83:8091/upload"+DirectoryName+fileName);
         return Msg.success().setData(map);
     }
 
