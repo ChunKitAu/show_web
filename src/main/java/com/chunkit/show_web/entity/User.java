@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
     /**
      * 用户id
      */
@@ -36,4 +38,7 @@ public class User {
     private String accountname;
 
 
+    public Integer getUserid() {
+        return userid;
+    }
 }

@@ -25,17 +25,17 @@
 
         <!-- 配置Java实体类存放位置 -->
         <javaModelGenerator
-                targetPackage="com.chunkit.show_web.entity"
+                targetPackage="com.chunkit.show_web.auth.entity"
                 targetProject="src/main/java"/>
 
         <!-- 配置XxxMapper.xml存放位置 -->
         <sqlMapGenerator
-                targetPackage="mapper"
-                targetProject="src/main/resources"/>
+                targetPackage="com.chunkit.show_web.auth.mapper"
+                targetProject="src/main/java"/>
 
         <!-- 配置XxxMapper.java存放位置 -->
         <javaClientGenerator
-                targetPackage="com.chunkit.show_web.mapper"
+                targetPackage="com.chunkit.show_web.auth.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
 
@@ -49,9 +49,20 @@
 <!--            <generatedKey column="userId" sqlStatement="Mysql" identity="true"/>-->
 <!--        </table>-->
 
-        <table tableName="gallery" domainObjectName="Gallery">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
+<!--        <table tableName="user_role" domainObjectName="User_Role">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+<!--        </table>-->
+<!--        <table tableName="role" domainObjectName="Role">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+<!--        </table>-->
+<!--        <table tableName="role_power" domainObjectName="Role_Power">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+<!--        </table>-->
+<!--        <table tableName="power" domainObjectName="Power">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+<!--        </table>-->
+
+
 
 
     </context>
