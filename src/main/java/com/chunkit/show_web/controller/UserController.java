@@ -4,6 +4,7 @@ import com.chunkit.show_web.entity.User;
 import com.chunkit.show_web.service.UserService;
 import com.chunkit.show_web.util.Msg;
 import com.chunkit.show_web.auth.util.SHA256Util;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import javax.validation.Valid;
  * @auther ChunKitAu
  * @create 2019-11-13 13
  */
+@RequiresRoles("admin")
 @RequestMapping("/user")
 @RestController
 public class UserController {

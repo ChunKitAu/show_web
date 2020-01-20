@@ -17,7 +17,9 @@ public class CorsConfig {
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.setAllowCredentials(true);//允许带cookie
+        corsConfiguration.setMaxAge(3600L);         // 预检请求的有效期，单位为秒。
+        corsConfiguration.setAllowCredentials(true);// 是否支持安全证书(必需参数)
+//        corsConfiguration.setAllowCredentials(true); //运行携带cookie
         return corsConfiguration;
     }
 

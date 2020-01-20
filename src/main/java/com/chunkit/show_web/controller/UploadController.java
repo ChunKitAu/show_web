@@ -4,6 +4,7 @@ import com.chunkit.show_web.entity.Gallery;
 import com.chunkit.show_web.service.GalleryService;
 import com.chunkit.show_web.util.Msg;
 import com.chunkit.show_web.util.UploadUtil;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.util.*;
  * @auther ChunKitAu
  * @create 2019-11-11 11
  */
+@RequiresRoles("admin")
 @Controller
 public class UploadController {
 
@@ -44,7 +46,6 @@ public class UploadController {
         imageTypes.add(".bmp");
         imageTypes.add(".gif");
         imageTypes.add(".png");
-
         vedioTypes.add(".mp4");
     }
 

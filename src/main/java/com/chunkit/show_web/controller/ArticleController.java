@@ -5,6 +5,7 @@ import com.chunkit.show_web.service.ArticleService;
 import com.chunkit.show_web.util.Msg;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @auther ChunKitAu
  * @create 2019-11-13 13
  */
+@RequiresRoles("admin")
 @RequestMapping("/article")
 @RestController
 public class ArticleController {
